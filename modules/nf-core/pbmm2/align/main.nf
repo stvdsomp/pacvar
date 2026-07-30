@@ -25,17 +25,17 @@ process PBMM2_ALIGN {
 
     """
     # pbmm2 doesn't support .fna extension, so rename to .fa
-    fasta="${fasta}"
-    if [[ \${fasta} == *.fna ]]; then
-        mv \${fasta} \${fasta%.fna}.fa
-    elif [[ \${fasta} == *.fna.gz ]]; then
-        mv \${fasta} \${fasta%.fna.gz}.fa.gz
+    fasta_name="${fasta}"
+    if [[ \${fasta_name} == *.fna ]]; then
+        mv \${fasta_name} \${fasta_name%.fna}.fa
+    elif [[ \${fasta_name} == *.fna.gz ]]; then
+        mv \${fasta_name} \${fasta_name%.fna.gz}.fa.gz
     fi
 
     pbmm2 \\
         align \\
         $args \\
-        $fasta \\
+        \${fasta_name} \\
         $bam \\
         ${prefix}.bam \\
         --num-threads ${task.cpus}
