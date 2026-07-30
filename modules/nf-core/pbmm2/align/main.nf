@@ -25,10 +25,11 @@ process PBMM2_ALIGN {
 
     """
     # pbmm2 doesn't support .fna extension, so rename to .fa
-    if [[ ${fasta} == *.fna ]]; then
-        ln -s \$(readlink -f ${fasta}) \${${fasta}‰.fna}.fa
-    elif [[ ${fasta} == *.fna.gz ]]; then
-        ln -s \$(readlink -f ${fasta}) \${${fasta}‰.fna.gz}.fa.gz
+    fasta="${fasta}"
+    if [[ \${fasta} == *.fna ]]; then
+        mv \${fasta} \${fasta%.fna}.fa
+    elif [[ \${fasta} == *.fna.gz ]]; then
+        mv \${fasta} \${fasta%.fna.gz}.fa.gz
     fi
 
     pbmm2 \\
