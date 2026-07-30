@@ -30,7 +30,7 @@ process PBMM2_ALIGN {
         new_name=\${fasta%.fna}.fa
         mv \${fasta} \${new_name}
         fasta=\${new_name}
-    elif [[ \${fasta_name} == *.fna.gz ]]; then
+    elif [[ \${fasta} == *.fna.gz ]]; then
         new_name=\${fasta%.fna.gz}.fa.gz
         mv \${fasta} \${new_name}
         fasta=\${new_name}
